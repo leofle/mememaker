@@ -1,19 +1,22 @@
 import React from 'react';
 import { Rnd } from 'react-rnd';
 
-const DraggText = ({ children }) => {
+const DraggText = ({ children, onDrag }) => {
     
     return (
         <Rnd
         default={{
-            x: 40,
-            y: 40,
-            width: 450,
-            height: 71,
+            x: 0,
+            y: 0
             }}
-            minWidth={450}
-            minHeight={71}
+            size={{
+                width: 'auto',
+                height: 'auto'
+            }}
             bounds="parent"
+            onDragStop={(e, d) => {
+                onDrag(d.x, d.y);
+            }}
         >
         { children } 
         </Rnd>

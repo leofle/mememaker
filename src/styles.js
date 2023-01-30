@@ -68,17 +68,15 @@ img {
 }    
 `;
 
-const TextInput = styled.input`
+const TextInput = styled.textarea`
 font-size: 36px;
 text-shadow: 5px 5px 5px black;
 text-transform: uppercase;
 text-align: center;
 color: white;
 font-weight: bold;
-padding: 10px;
 background-color: transparent;
-border: 1px solid black;
-position: absolute;
+border: 1px dotted gray;
 `;
 
 const Container = styled.div`
@@ -93,6 +91,10 @@ const AddTextButton = styled.button`
 `;
 
 const RemoveTextButton = styled.button`
+    margin-top: 20px;
+`;
+
+const SaveImageButton = styled.button`
     margin-top: 20px;
 `;
 
@@ -133,6 +135,10 @@ const OtherTools = styled.div`
     padding: 10px;
     margin: 10px; 
     flex-grow: 1;
+    canvas {
+        width: 500px;
+        height: auto;
+    }
 `;
 
 export {
@@ -148,6 +154,7 @@ export {
     Container,
     AddTextButton,
     RemoveTextButton,
+    SaveImageButton,
     FlexContainer,
     ToolBar,
     OtherTools
