@@ -1,7 +1,7 @@
 import React from 'react';
 import { Rnd } from 'react-rnd';
 
-const DraggText = ({ children, onDrag }) => {
+const DraggText = ({ children, onDrop }) => {
     
     return (
         <Rnd
@@ -9,13 +9,9 @@ const DraggText = ({ children, onDrag }) => {
             x: 0,
             y: 0
             }}
-            size={{
-                width: 'auto',
-                height: 'auto'
-            }}
             bounds="parent"
             onDragStop={(e, d) => {
-                onDrag(d.x, d.y);
+                onDrop(e, d);
             }}
         >
         { children } 

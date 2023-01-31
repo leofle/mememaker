@@ -59,7 +59,9 @@ const MainSection = () => {
         ctx.textAlign = "center";
         ctx.textBaseline = "center";
         ctx.textTransform = "uppercase";
-        ctx.fillText(text.toUpperCase(), textInputs[active].x, textInputs[active].y);
+        textInputs.forEach(input => {
+          ctx.fillText(text.toUpperCase(), input.x, input.y);
+        });
         const dataURL = canvas.toDataURL();
         const link = document.createElement("a");
         link.download = "meme.png";
@@ -83,6 +85,17 @@ const MainSection = () => {
         setTextInputs(textInputs.splice(0, textInputs.length - 1));
         setActive(textInputs.length - 1)
     };
+
+    const onDrop = (event) => {
+      const x = event.clientX;
+      const y = event.clientY;
+      setTextInputs(textInputs.map((input, i) => {
+          if (i === active) {
+              return { ...input, x, y };
+          }
+          return input;
+      }));
+  };
     
   return (
     <Main>
@@ -117,14 +130,11 @@ const MainSection = () => {
             {textInputs.map((input, index) => (
                 <DraggText
                     key={index}
-                    x={input.x}
-                    y={input.y}
-
-                    onDrag={(x, y) => {
-                        const newInputs = [...textInputs];
-                        newInputs[index] = { ...input, x, y };
-                        setTextInputs(newInputs);
-                    }}
+                    x={textInputs[active].x} 
+                    y={textInputs[active].y} 
+                    width={textInputs[active].width} 
+                    height={textInputs[active].height} 
+                    onDrop={onDrop} 
                 >
                     <TextInput
                     key={index}
