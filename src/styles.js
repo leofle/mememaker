@@ -110,7 +110,7 @@ const FlexContainer = styled.div`
     padding: 10px;
 `;
 
-const ToolBar = styled.div`
+const ToolBarStyle = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -156,6 +156,6 @@ export {
     RemoveTextButton,
     SaveImageButton,
     FlexContainer,
-    ToolBar,
+    ToolBarStyle,
     OtherTools
 }
