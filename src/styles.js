@@ -69,24 +69,25 @@ img {
 `;
 
 const TextInput = styled.input`
-font-size: 36px;
-text-shadow: 5px 5px 5px black;
-text-transform: uppercase;
-text-align: center;
-color: white;
-font-weight: bold;
-background-color: transparent;
-border: 1px dotted gray;
+font-size: 16px;
 `;
 
 const ResizableDraggableElement = styled.div`
 position: absolute;
 z-index: 999;
-top: 0;
-left: 0;
-width: 200px;
-height: 50px;
-border: 1px solid black;
+
+p {
+    font-size: 24px;
+    text-shadow: 5px 5px 5px black;
+    text-transform: uppercase;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    background-color: transparent;
+    border: 1px dotted gray;
+    margin: 0;
+    text-size-adjust: auto;
+}
 `;
 
 const Container = styled.div`

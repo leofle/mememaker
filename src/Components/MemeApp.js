@@ -17,7 +17,7 @@ import RightPanel from "./RightPanel";
 const MainSection = () => {
   const [memes, setMemes] = useState([]);
   const [selectedMeme, setSelectedMeme] = useState(null);
-  const [text, setText] = useState("");
+  const [toptext, setTopText] = useState("");
   const [textInputs, setTextInputs] = useState([
     { x: 10, y: 10, width: 200, height: 50 },
   ]);
@@ -82,12 +82,10 @@ const MainSection = () => {
                   key={index}
                   x={textInputs[active].x}
                   y={textInputs[active].y}
-                  width={textInputs[active].width}
-                  height={textInputs[active].height}
                   onDrop={onDrop}
                 >
                   <ResizableDraggableElement>
-                    <p>{ input.text }</p>
+                    <p>{ toptext }</p>
                   </ResizableDraggableElement>
                 </DraggText>
               ))}
@@ -99,13 +97,13 @@ const MainSection = () => {
           selectedMeme={selectedMeme}
           isExporting={isExporting}
           textInputs={textInputs}
-          text={text}
+          text={toptext}
           setIsExporting={setIsExporting}
         >
         <TextInput
           defaultValue={`Text #1`}
-          value={text}
-          onChange={(e) => setText(e.target.value)}
+          value={toptext}
+          onChange={(e) => setTopText(e.target.value)}
         />
         </RightPanel>
       </FlexContainer>

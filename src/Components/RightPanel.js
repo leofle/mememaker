@@ -15,14 +15,19 @@ const RightPanel = ( { children, canvasRef, selectedMeme, isExporting, textInput
           ctx.drawImage(
             image, 0, 0, image.width, image.height, 0, 0, canvas.width, canvas.height
           );
-          ctx.font = "46px Arial Black";
+          let metrics = ctx.measureText(text);
+          let fontHeight = metrics.fontBoundingBoxAscent + metrics.fontBoundingBoxDescent;
+          let actualHeight = metrics.actualBoundingBoxAscent + metrics.actualBoundingBoxDescent;
+            let scale = fontHeight / actualHeight;
+            let fontSize = 46 * scale;
+            ctx.font = `${fontSize}px Arial Black`;
           ctx.shadowColor = "black";
           ctx.shadowBlur = 15;
           ctx.lineWidth = 5;
           ctx.fillStyle = "white";
           ctx.textAlign = "center";
           ctx.textBaseline = "center";
-          ctx.textTransform = "uppercase";
+        //   ctx.textTransform = "uppercase";
           textInputs.forEach((input) => {
             ctx.fillText(text.toUpperCase(), input.x, input.y);
           });
