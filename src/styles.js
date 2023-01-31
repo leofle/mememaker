@@ -68,7 +68,7 @@ img {
 }    
 `;
 
-const TextInput = styled.textarea`
+const TextInput = styled.input`
 font-size: 36px;
 text-shadow: 5px 5px 5px black;
 text-transform: uppercase;
@@ -77,6 +77,16 @@ color: white;
 font-weight: bold;
 background-color: transparent;
 border: 1px dotted gray;
+`;
+
+const ResizableDraggableElement = styled.div`
+position: absolute;
+z-index: 999;
+top: 0;
+left: 0;
+width: 200px;
+height: 50px;
+border: 1px solid black;
 `;
 
 const Container = styled.div`
@@ -157,5 +167,6 @@ export {
     SaveImageButton,
     FlexContainer,
     ToolBarStyle,
-    OtherTools
+    OtherTools,
+    ResizableDraggableElement
 }

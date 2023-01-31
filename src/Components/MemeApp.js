@@ -7,6 +7,7 @@ import {
   SelectedMeme,
   TextInput,
   FlexContainer,
+  ResizableDraggableElement
 } from "../styles";
 import DraggText from "./DraggText";
 import MemeGallery from "./Gallery";
@@ -34,37 +35,7 @@ const MainSection = () => {
       setMemes(result.data.data.memes);
     };
     fetchMemes();
-
-    if (!isExporting) return;
-
-    const canvas = canvasRef.current;
-    const ctx = canvas.getContext("2d");
-    const image = new Image();
-    image.crossOrigin = "anonymous";
-    image.src = selectedMeme.url;
-    image.onload = () => {
-      ctx.drawImage(
-        image, 0, 0, image.width, image.height, 0, 0, canvas.width, canvas.height
-      );
-      ctx.font = "46px Arial Black";
-      ctx.shadowColor = "black";
-      ctx.shadowBlur = 15;
-      ctx.lineWidth = 5;
-      ctx.fillStyle = "white";
-      ctx.textAlign = "center";
-      ctx.textBaseline = "center";
-      ctx.textTransform = "uppercase";
-      textInputs.forEach((input) => {
-        ctx.fillText(text.toUpperCase(), input.x, input.y);
-      });
-      const dataURL = canvas.toDataURL();
-      const link = document.createElement("a");
-      link.download = "meme.png";
-      link.href = dataURL;
-      link.click();
-      setIsExporting(false);
-    };
-  }, [isExporting, selectedMeme, textInputs, active, text]);
+  }, []);
 
   const handleMemeSelection = (meme) => {
     setSelectedMeme(meme);
@@ -115,18 +86,28 @@ const MainSection = () => {
                   height={textInputs[active].height}
                   onDrop={onDrop}
                 >
-                  <TextInput
-                    key={index}
-                    defaultValue={`Text #${index + 1}`}
-                    value={input.text}
-                    onChange={(e) => setText(e.target.value)}
-                  />
+                  <ResizableDraggableElement>
+                    <p>{ input.text }</p>
+                  </ResizableDraggableElement>
                 </DraggText>
               ))}
             </SelectedMeme>
           )}
         </Container>
-        <RightPanel canvasRef={canvasRef} selectedMeme={selectedMeme} />
+        <RightPanel 
+          canvasRef={canvasRef} 
+          selectedMeme={selectedMeme}
+          isExporting={isExporting}
+          textInputs={textInputs}
+          text={text}
+          setIsExporting={setIsExporting}
+        >
+        <TextInput
+          defaultValue={`Text #1`}
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+        />
+        </RightPanel>
       </FlexContainer>
       <div>{console.log(active)}</div>
     </Main>
