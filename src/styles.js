@@ -42,7 +42,6 @@ const MemeItem = styled.div`
 display: flex;
 flex-direction: column;
 align-items: center;
-margin-right: 20px;
 cursor: pointer;
 `;
 
@@ -75,19 +74,16 @@ font-size: 16px;
 const ResizableDraggableElement = styled.div`
 position: absolute;
 z-index: 999;
-
-p {
-    font-size: 24px;
-    text-shadow: 5px 5px 5px black;
-    text-transform: uppercase;
-    text-align: center;
-    color: white;
-    font-weight: bold;
-    background-color: transparent;
-    border: 1px dotted gray;
-    margin: 0;
-    text-size-adjust: auto;
-}
+font-size: 24px;
+text-shadow: 5px 5px 5px black;
+text-transform: uppercase;
+text-align: center;
+color: white;
+font-weight: bold;
+background-color: transparent;
+border: 1px dotted gray;
+margin: 0;
+text-size-adjust: auto;
 `;
 
 const Container = styled.div`

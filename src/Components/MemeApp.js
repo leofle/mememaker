@@ -85,7 +85,7 @@ const MainSection = () => {
                   onDrop={onDrop}
                 >
                   <ResizableDraggableElement>
-                    <p>{ toptext }</p>
+                    { toptext }
                   </ResizableDraggableElement>
                 </DraggText>
               ))}

@@ -19,23 +19,30 @@ const RightPanel = ( { children, canvasRef, selectedMeme, isExporting, textInput
           let fontHeight = metrics.fontBoundingBoxAscent + metrics.fontBoundingBoxDescent;
           let actualHeight = metrics.actualBoundingBoxAscent + metrics.actualBoundingBoxDescent;
             let scale = fontHeight / actualHeight;
-            let fontSize = 46 * scale;
-            ctx.font = `${fontSize}px Arial Black`;
+            const resizeText = (canvas, text, font, width) => {
+                let fontSize = 46;
+                do {
+                    fontSize--;
+                    canvas.font = fontSize + "px " + font;
+                } while (canvas.measureText(text).width > width);
+                return fontSize;
+            };
+            let fontSize = resizeText(ctx, text, "Arial Black", canvas.width * 0.8);
+            ctx.font = fontSize + "px Arial Black";
           ctx.shadowColor = "black";
           ctx.shadowBlur = 15;
           ctx.lineWidth = 5;
           ctx.fillStyle = "white";
-          ctx.textAlign = "center";
+          ctx.textAlign = "right";
           ctx.textBaseline = "center";
-        //   ctx.textTransform = "uppercase";
           textInputs.forEach((input) => {
             ctx.fillText(text.toUpperCase(), input.x, input.y);
           });
           const dataURL = canvas.toDataURL();
           const link = document.createElement("a");
-          link.download = "meme.png";
-          link.href = dataURL;
-          link.click();
+        //   link.download = "meme.png";
+        //   link.href = dataURL;
+        //   link.click();
           setIsExporting(false);
         };
       }, [isExporting, selectedMeme, textInputs, active, text]);
