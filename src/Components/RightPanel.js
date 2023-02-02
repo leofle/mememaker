@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { OtherTools } from '../styles';
-
+import wrapText from '../Tools';
 const RightPanel = ( { children, canvasRef, selectedMeme, isExporting, textInputs, text, setIsExporting, active } ) => {
 
     useEffect(() => { 
@@ -27,17 +27,22 @@ const RightPanel = ( { children, canvasRef, selectedMeme, isExporting, textInput
                 } while (canvas.measureText(text).width > width);
                 return fontSize;
             };
-            let fontSize = resizeText(ctx, text, "Arial Black", canvas.width * 0.8);
-            ctx.font = fontSize + "px Arial Black";
-          ctx.shadowColor = "black";
-          ctx.shadowBlur = 15;
-          ctx.lineWidth = 5;
-          ctx.fillStyle = "white";
-          ctx.textAlign = "right";
-          ctx.textBaseline = "center";
-          textInputs.forEach((input) => {
-            ctx.fillText(text.toUpperCase(), input.x, input.y);
-          });
+          let fontSize = resizeText(ctx, text, "Arial Black", canvas.width * 0.8);
+          let wrappedText = wrapText(ctx, text.toUpperCase(), 48, 69, 1050, 140);
+
+          textInputs.forEach((input, index) => {
+            ctx.font = "bold 48px Arial Black";
+            ctx.shadowColor = "black";
+            ctx.shadowBlur = 15;
+            ctx.lineWidth = 5;
+            ctx.fillStyle = "white";
+            ctx.textAlign = "center";
+            ctx.textBaseline = "center";
+            wrappedText.forEach(function(item) {
+                ctx.fillText(item[0], item[1], item[2]); 
+            });
+            });
+
           const dataURL = canvas.toDataURL();
           const link = document.createElement("a");
         //   link.download = "meme.png";
