@@ -13,12 +13,8 @@ const RightPanel = ( { children, canvasRef, selectedMeme, isExporting, textInput
         image.src = selectedMeme.url;
         image.onload = () => {
           ctx.drawImage(
-            image, 0, 0, image.width, image.height, 0, 0, canvas.width, canvas.height
+            image, 0, 0, image.width, image.height, 0, 0, image.width, image.height
           );
-          let metrics = ctx.measureText(text);
-          let fontHeight = metrics.fontBoundingBoxAscent + metrics.fontBoundingBoxDescent;
-          let actualHeight = metrics.actualBoundingBoxAscent + metrics.actualBoundingBoxDescent;
-            let scale = fontHeight / actualHeight;
             const resizeText = (canvas, text, font, width) => {
                 let fontSize = 46;
                 do {
@@ -28,8 +24,8 @@ const RightPanel = ( { children, canvasRef, selectedMeme, isExporting, textInput
                 return fontSize;
             };
           let fontSize = resizeText(ctx, text, "Arial Black", canvas.width * 0.8);
-          let wrappedText = wrapText(ctx, text.toUpperCase(), 48, 69, 1050, 140);
-
+          let wrappedText = wrapText(ctx, text.toUpperCase(), canvas.width * 0.8, fontSize, canvas.width * 0.1, canvas.height * 0.1);
+          
           textInputs.forEach((input, index) => {
             ctx.font = "bold 48px Arial Black";
             ctx.shadowColor = "black";

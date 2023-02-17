@@ -51,6 +51,13 @@ const MainSection = () => {
     setActive(textInputs.length - 1);
   };
 
+  const getPosition = (e) => {
+    let rect = e.target.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    return { x, y };
+  };
+
   const onDrop = (event) => {
     const x = event.clientX;
     const y = event.clientY;
@@ -59,6 +66,7 @@ const MainSection = () => {
         if (i === active) {
           return { ...input, x, y };
         }
+        console.log(input)
         return input;
       })
     );
@@ -82,6 +90,7 @@ const MainSection = () => {
                   key={index}
                   x={textInputs[active].x}
                   y={textInputs[active].y}
+                  getPosition={getPosition}
                   onDrop={onDrop}
                 >
                   <ResizableDraggableElement>
