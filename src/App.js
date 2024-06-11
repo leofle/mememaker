@@ -10,13 +10,19 @@ const App = () => {
     const [selectedMeme, setSelectedMeme] = useState(null);
     const [textElements, setTextElements] = useState([]);
     const canvasRef = useRef(null);
+    const [textCount, setTextCount] = useState(1);
 
     const addTextElement = () => {
-        setTextElements([...textElements, { id: textElements.length, x: 50, y: 50, text: 'New Text' }]);
+        const newText = `Text #${textCount}`;
+        setTextElements([...textElements, { id: textElements.length, x: 50, y: 50, text: newText }]);
+        setTextCount(textCount + 1);
     };
 
     const removeTextElement = () => {
         setTextElements(textElements.slice(0, -1));
+        if (textCount > 1) {
+            setTextCount(textCount - 1);
+        }
     };
 
     const updateTextPosition = (id, x, y) => {
