@@ -36,7 +36,7 @@ const DraggableText = ({ id, x, y, text, updatePosition, updateContent }) => {
                         boxSizing: 'border-box',
                         textTransform: 'uppercase',
                         textShadow: '2px 2px 4px #000000',
-                        outline: 'none',  // Remove default outline
+                        outline: 'none',
                     }}
                 />
             </ResizableDraggableElement>

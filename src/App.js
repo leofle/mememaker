@@ -26,6 +26,7 @@ const App = () => {
     };
 
     const updateTextPosition = (id, x, y) => {
+      console.log(id, x, y)
         setTextElements(
             textElements.map(el => el.id === id ? { ...el, x, y } : el)
         );
@@ -60,8 +61,9 @@ const App = () => {
                 ctx.strokeStyle = 'black';
                 const textX = el.x * (canvasWidth / 500); // Scale X position
                 const textY = el.y * (canvasHeight / (500 / aspectRatio)); // Scale Y position
-                ctx.strokeText(el.text, textX, textY);
-                ctx.fillText(el.text, textX, textY);
+                console.log(el.text, textX, textY)
+                ctx.strokeText(el.text, textX + 100, textY + 30);
+                ctx.fillText(el.text, textX + 100, textY + 30);
             });
             const dataURL = canvas.toDataURL('image/png');
             const link = document.createElement('a');

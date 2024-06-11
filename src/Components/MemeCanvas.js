@@ -22,8 +22,8 @@ const MemeCanvas = forwardRef(({ meme, textElements }, ref) => {
                 ctx.textBaseline = 'middle';
                 ctx.lineWidth = 4;
                 ctx.strokeStyle = 'black';
-                const textX = el.x * (canvasWidth / 500); // Scale X position
-                const textY = el.y * (canvasHeight / (500 / aspectRatio)); // Scale Y position
+                const textX = (el.x / canvasWidth) * canvasWidth; // Ensure correct X scaling
+                const textY = (el.y / canvasHeight) * canvasHeight; // Ensure correct Y scaling
                 ctx.strokeText(el.text, textX, textY);
                 ctx.fillText(el.text, textX, textY);
             });

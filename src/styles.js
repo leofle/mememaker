@@ -58,6 +58,7 @@ const SelectedMeme = styled.section`
   flex-direction: column;
   align-items: center;
   margin-top: 20px;
+  position: relative;  // Ensure relative positioning
   img {
     width: 100%;
     height: auto;
