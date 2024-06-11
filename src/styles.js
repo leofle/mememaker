@@ -116,22 +116,22 @@ const Container = styled.div`
 `;
 
 const AddTextButton = styled.button`
-  margin-top: 20px;
+  margin-top: 10px;
 `;
 
 const RemoveTextButton = styled.button`
-  margin-top: 20px;
+  margin-top: 10px;
 `;
 
 const SaveImageButton = styled.button`
-  margin-top: 20px;
+  margin-top: 10px;
 `;
 
 const FlexContainer = styled.div`
   display: flex;
   flex-direction: ${props => props.row ? 'row' : 'column'};
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;  // Align items to start for better layout
   width: 100%;
   height: 100%;
   background-color: #ffffff;
@@ -142,14 +142,14 @@ const FlexContainer = styled.div`
 const ToolBarStyle = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;  // Align buttons to start
   align-items: center;
-  width: 30%;
+  width: auto;
   height: auto;
   background-color: #ffffff;
   border-radius: 5px;
   padding: 10px;
-  margin: 10px;
+  margin-left: 20px;  // Add some margin to the left to separate from the canvas
 `;
 
 const OtherTools = styled.div`

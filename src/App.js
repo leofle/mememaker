@@ -3,7 +3,7 @@ import MemeGallery from './Components/MemeGallery';
 import DraggableText from './Components/DraggableText';
 import Toolbar from './Components/ToolBar';
 import MemeCanvas from './Components/MemeCanvas';
-import { Main, Container, SelectedMeme } from './styles';
+import { Main, Container, SelectedMeme, FlexContainer, ToolBarStyle } from './styles';
 
 const App = () => {
     const [memes, setMemes] = useState([]);
@@ -26,7 +26,6 @@ const App = () => {
     };
 
     const updateTextPosition = (id, x, y) => {
-      console.log(id, x, y)
         setTextElements(
             textElements.map(el => el.id === id ? { ...el, x, y } : el)
         );
@@ -61,7 +60,6 @@ const App = () => {
                 ctx.strokeStyle = 'black';
                 const textX = el.x * (canvasWidth / 500); // Scale X position
                 const textY = el.y * (canvasHeight / (500 / aspectRatio)); // Scale Y position
-                console.log(el.text, textX, textY)
                 ctx.strokeText(el.text, textX + 100, textY + 30);
                 ctx.fillText(el.text, textX + 100, textY + 30);
             });
@@ -75,18 +73,22 @@ const App = () => {
 
     return (
         <Main>
-            <Toolbar addText={addTextElement} removeText={removeTextElement} exportImage={exportImage} />
             <MemeGallery setSelectedMeme={setSelectedMeme} setMemes={setMemes} memes={memes} />
             {selectedMeme && (
-                <Container>
-                    <SelectedMeme>
-                        <img src={selectedMeme.url} alt="selected meme" style={{ width: '500px', height: 'auto' }} />
-                        {textElements.map(el => (
-                            <DraggableText key={el.id} id={el.id} x={el.x} y={el.y} text={el.text} updatePosition={updateTextPosition} updateContent={updateTextContent} />
-                        ))}
-                    </SelectedMeme>
-                    <MemeCanvas ref={canvasRef} meme={selectedMeme} textElements={textElements} />
-                </Container>
+                <FlexContainer row>
+                    <Container>
+                        <SelectedMeme>
+                            <img src={selectedMeme.url} alt="selected meme" style={{ width: '500px', height: 'auto' }} />
+                            {textElements.map(el => (
+                                <DraggableText key={el.id} id={el.id} x={el.x} y={el.y} text={el.text} updatePosition={updateTextPosition} updateContent={updateTextContent} />
+                            ))}
+                        </SelectedMeme>
+                        <MemeCanvas ref={canvasRef} meme={selectedMeme} textElements={textElements} />
+                    </Container>
+                    <ToolBarStyle>
+                        <Toolbar addText={addTextElement} removeText={removeTextElement} exportImage={exportImage} />
+                    </ToolBarStyle>
+                </FlexContainer>
             )}
         </Main>
     );
