@@ -1,16 +1,16 @@
-import { ToolBarStyle, FlexContainer, AddTextButton, RemoveTextButton, SaveImageButton } from "../styles";
+import React from 'react';
+import { ToolBarStyle, FlexContainer, AddTextButton, RemoveTextButton, SaveImageButton } from '../styles';
 
-const ToolBar = ( { handleAddText, handleRemoveText, handleExport }) => {
+const Toolbar = ({ addText, removeText, exportImage }) => {
     return (
         <ToolBarStyle>
-            <p>Text Tools</p>
             <FlexContainer row>
-                <AddTextButton onClick={handleAddText}>Add Text</AddTextButton>
-                <RemoveTextButton onClick={ handleRemoveText }>Remove Text</RemoveTextButton>
-                <SaveImageButton onClick={handleExport}>Save Image</SaveImageButton>
+                <AddTextButton onClick={addText}>Add Text</AddTextButton>
+                <RemoveTextButton onClick={removeText}>Remove Text</RemoveTextButton>
+                <SaveImageButton onClick={exportImage}>Save Image</SaveImageButton>
             </FlexContainer>
         </ToolBarStyle>
     );
-}
+};
 
-export default ToolBar;
+export default Toolbar;
