@@ -84,6 +84,27 @@ const ResizableDraggableElement = styled.div`
   text-size-adjust: auto;
   box-sizing: border-box;
   width: auto;
+
+  input {
+    font-size: 30px;
+    padding: 5px;
+    text-align: center;
+    background: transparent;
+    border: none;
+    color: white;
+    width: 100%;
+    box-sizing: border-box;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 4px #000000;
+    outline: none; /* Remove default outline */
+    box-shadow: none; /* Remove default box-shadow */
+  }
+
+  input:focus {
+    outline: none;
+    box-shadow: none;
+    border: none;
+  }
 `;
 
 const Container = styled.div`
