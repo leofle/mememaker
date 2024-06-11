@@ -25,7 +25,18 @@ const DraggableText = ({ id, x, y, text, updatePosition, updateContent }) => {
                     type="text"
                     value={text}
                     onChange={handleChange}
-                    style={{ fontSize: '20px', padding: '5px', textAlign: 'center', background: 'transparent', border: 'none', color: 'white', width: '100%', boxSizing: 'border-box' }}
+                    style={{
+                        fontSize: '30px',
+                        padding: '5px',
+                        textAlign: 'center',
+                        background: 'transparent',
+                        border: 'none',
+                        color: 'white',
+                        width: '100%',
+                        boxSizing: 'border-box',
+                        textTransform: 'uppercase',
+                        textShadow: '2px 2px 4px #000000',
+                    }}
                 />
             </ResizableDraggableElement>
         </Rnd>
